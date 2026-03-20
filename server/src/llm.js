@@ -9,6 +9,12 @@ const isOpenRouterKey = typeof apiKey === "string" && apiKey.startsWith("sk-or-"
 const openai = new OpenAI({
   apiKey,
   baseURL: isOpenRouterKey ? "https://openrouter.ai/api/v1" : undefined,
+  defaultHeaders: isOpenRouterKey
+    ? {
+        "HTTP-Referer": "http://localhost:5173",
+        "X-Title": "AI Summarizer App",
+      }
+    : undefined,
 });
 
 export async function summarizeText(userText) {

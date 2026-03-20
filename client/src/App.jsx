@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ResultCard from "./components/ResultCard.jsx";
 
-const API_URL = "http://localhost:5000/api/summarize";
+const API_URL = "https://ai-summarizer-2-uq1u.onrender.com/api/summarize";
 
 function App() {
   const [text, setText] = useState("");
