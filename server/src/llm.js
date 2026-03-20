@@ -15,7 +15,9 @@ export async function summarizeText(userText) {
   const prompt = buildPrompt(userText);
 
   // Keep this interview-friendly: choose a sensible model per provider.
-  const model = isOpenRouterKey ? "gpt-5-nano" : "gpt-4o-mini";
+  const model = isOpenRouterKey 
+    ? "openai/gpt-3.5-turbo" 
+    : "gpt-4o-mini";
 
   const response = await openai.responses.create({
     model,
