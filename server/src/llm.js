@@ -25,13 +25,15 @@ export async function summarizeText(userText) {
     ? "openai/gpt-3.5-turbo" 
     : "gpt-4o-mini";
 
-  const response = await openai.responses.create({
-    model,
-    input: prompt,
-    temperature: 0,
-  });
-
-  const content = response.output_text;
+    const response = await openai.chat.completions.create({
+      model,
+      messages: [
+        { role: "user", content: prompt }
+      ],
+      temperature: 0,
+    });
+    
+    const content = response.choices[0]?.message?.content;
 
   if (!content) {
     throw new Error("Empty response from LLM.");
